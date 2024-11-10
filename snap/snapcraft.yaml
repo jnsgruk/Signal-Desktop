@@ -91,9 +91,10 @@ parts:
       base_uri="$(grep -Po "BASE_URI = \`\K[^\`]+" deps/download.js)"
       sqlcipher_version="$(grep -Po "SQLCIPHER_VERSION = '\K[^']+" deps/download.js)"
       hash="$(grep -Po "HASH = '\K[^']+" deps/download.js)"
+      extension_version="$(grep -Po "EXTENSION_VERSION = '\K[^']+" deps/download.js)"
 
       # Download the file using curl, which respects the proxy configuration
-      curl -s -o deps/sqlcipher.tar.gz "${base_uri}/sqlcipher-v2-${sqlcipher_version}--${hash}.tar.gz"
+      curl -s -o deps/sqlcipher.tar.gz "${base_uri}/sqlcipher-v2-${sqlcipher_version}--${extension_version}-${hash}.tar.gz"
 
       # Use the version of nodejs we configured before and install node deps
       source "$(pwd)/../../nodejs/build/asdf.sh"
